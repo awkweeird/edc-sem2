@@ -3,23 +3,31 @@ import java.util.Scanner;
 
 // assignment 1 edc
 // sorry i just started
-  class Main {
+  class RegexEngine {
 
     String name;
     Boolean initial;
     Boolean accept;
-    List<String> inpuStrings;
-    List<String> nextstate;
-    List<String> Epsilonnnn;
+    static List<String> inputString;
+    static List<String> nextstate;
+    static List<String> Epsilonnnn;
+
+    // public static void getInput(String[] args);
+    // public static void process();
+
     public static void main(String[] args) {
-      Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-      System.out.println("whats your input");
+      Scanner name = new Scanner(System.in);  // Create a Scanner object
+      //System.out.println("whats your input");
   
-      String userName = myObj.nextLine();  // Read user input
-      System.out.println("input is: " + userName);  // Output user input
+      String userName = name.nextLine();  // Read user input
+      //System.out.println(userName);  // Output user input
+
+      System.out.println("true");
+      
+    //   inputString.add(0, userName);
+    //     System.out.println("okay sure"+userName);
     }
 
-    public static void main(){
 
-    }
   }
+
