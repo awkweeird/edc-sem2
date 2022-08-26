@@ -23,9 +23,9 @@ import java.util.Scanner;
   
       String moreinp = input.nextLine();  // Read user input
 
-      if (moreinp != ""){
+      //if (moreinp != ""){
         regex.initial = true ;
-      }
+      //}
 
       regex.accept = true ;
       
