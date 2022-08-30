@@ -1,10 +1,14 @@
 import java.beans.Transient;
-
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+//import "RegexEngine.java" ;
+//import org.junit.Test;
 
 public class Regex_Test{
-    @Test
+    //@Test
     public static void main(String[] args) {
-      System.out.println("Test");
+        RegexEngine regextest = new RegexEngine();
+        regextest.input = "b";
+        RegexEngine regexresult = regextest.take(regextest);
+        assertEquals(false, regexresult.accept);
       }
 }

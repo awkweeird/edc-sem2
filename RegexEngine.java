@@ -6,7 +6,7 @@ import java.lang.Boolean;
 // sorry i just started
 public class RegexEngine {
 
-    String name;
+    String input;
     Boolean initial;
     Boolean accept;
     static List<String> inputString;
@@ -14,8 +14,26 @@ public class RegexEngine {
     static List<String> Epsilon;
 
     public RegexEngine() {
+      input = null ;
       initial = false ;
       accept = false ;
+    }
+
+    public RegexEngine take(RegexEngine a){
+
+      if ((a.input).equals("a")){
+        a.initial = true ;
+        // is this working?
+      } else {
+        a.accept = false ; 
+      }
+
+      if (a.initial){
+        a.accept = true ;
+      }
+
+      return a;
+      
     }
 
     public static void main(String[] args) {
@@ -25,23 +43,17 @@ public class RegexEngine {
       Scanner input = new Scanner(System.in);  // Create a Scanner object
   
       String moreinp = input.nextLine();  // Read user input
+
+      regex.input = moreinp ;
+
+      regex.take(regex) ;
+
+
   
       // what is moreinp
       //System.out.println("what is moreinp?" + moreinp);
 
       // testing a single character first 
-
-
-      if (moreinp.equals("a")){
-        regex.initial = true ;
-        // is this working?
-      } else {
-        regex.accept = false ; 
-      }
-
-      if (regex.initial){
-        regex.accept = true ;
-      }
 
       System.out.println(regex.accept);
       
