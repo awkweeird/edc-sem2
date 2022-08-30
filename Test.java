@@ -4,7 +4,7 @@ import java.beans.Transient;
 
 public class Test{
     //@Test
-    public void testing() {
+    public static void main(String[] args) {
       System.out.println("Test");
       }
 }
