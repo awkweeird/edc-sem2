@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 //import org.junit.Test;
 
 public class Regex_Test{
-    //@Test
+    @Test
     public static void main(String[] args) {
         RegexEngine regextest = new RegexEngine();
         regextest.input = "b";
