@@ -35,6 +35,8 @@ public class RegexEngine {
       if (moreinp.equals("a")){
         regex.initial = true ;
         // is this working?
+      } else {
+        regex.accept = false ; 
       }
 
       if (regex.initial){
