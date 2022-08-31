@@ -29,7 +29,7 @@ public class RegexEngine {
 
       for (int i=0;i<reg.length();i++){
         //System.out.println("character is: " + Character.isLetter(reg.charAt(i))) ;
-        if (!Character.isLetter(reg.charAt(i))){
+        if (!Character.isLetterOrDigit(reg.charAt(i))){ // https://stackoverflow.com/questions/8248277/how-to-determine-if-a-string-has-non-alphanumeric-characters
           a.initial = false ;
         }
       }
