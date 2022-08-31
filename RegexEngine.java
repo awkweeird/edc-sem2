@@ -29,6 +29,8 @@ public class RegexEngine {
 
       if (a.initial){
         a.accept = true ;
+      } else {
+        a.accept = false ;
       }
 
       return a;
