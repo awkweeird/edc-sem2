@@ -6,7 +6,6 @@ import java.lang.Boolean;
 public class RegexEngine {
 
     String input;
-    String character; 
     Boolean initial;
     Boolean accept;
     static List<String> regexString;
@@ -15,7 +14,6 @@ public class RegexEngine {
 
     public RegexEngine() {
       input = null ;
-      character = null ;
       initial = false ;
       accept = false ;
     }
@@ -29,7 +27,7 @@ public class RegexEngine {
 
       for (int i=0;i<reg.length();i++){
         //System.out.println("character is: " + Character.isLetter(reg.charAt(i))) ;
-        if (!Character.isLetterOrDigit(reg.charAt(i))){ // https://stackoverflow.com/questions/8248277/how-to-determine-if-a-string-has-non-alphanumeric-characters
+        if ( (!Character.isLetterOrDigit(reg.charAt(i))) ){ // https://stackoverflow.com/questions/8248277/how-to-determine-if-a-string-has-non-alphanumeric-characters
           a.initial = false ;
         }
       }
@@ -40,6 +38,7 @@ public class RegexEngine {
       
     }
 
+    // matching the input to the regex
     public Boolean accepted(RegexEngine exp, String chr){
 
       String reg = exp.input;
@@ -49,6 +48,36 @@ public class RegexEngine {
         exp.accept = true;
       } else {
         exp.accept = false;
+      }
+
+      // if case of STAR
+      // get location of the stars
+      int k=0;
+      int loc=0;
+      if (reg.indexOf("*")!=-1){
+        k++;
+        loc = reg.indexOf("*");
+        // get the character before the star
+        Character starred = reg.charAt(loc-1);
+
+        // track if the character inputs by user to match regex are all the same or not
+        int same=0;
+
+        if (chr==" "){
+          exp.accept = true;
+        } else {
+          for (int i=0;i<chr.length();i++){
+            if (starred==chr.charAt(i)){
+              same++;
+            }
+          } 
+        }
+
+        if (same==chr.length()){
+          exp.accept = true;
+        } else {
+          exp.accept = false;
+        }
       }
 
       return exp.accept;
