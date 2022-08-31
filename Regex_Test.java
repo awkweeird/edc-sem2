@@ -1,7 +1,7 @@
 import java.beans.Transient;
 //import static org.junit.Assert.assertEquals;
 //import "RegexEngine.java" ;
-//import org.junit.Test;
+import org.junit.Test;
 import java.lang.Object; 
 
 public class Regex_Test{
