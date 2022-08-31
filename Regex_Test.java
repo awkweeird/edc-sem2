@@ -5,8 +5,9 @@ import java.beans.Transient;
 import java.lang.Object; 
 
 public class Regex_Test{
-    //@Test
+    @Test
     public static void main(String[] args) {
+        Regex_Test regextesting = new Regex_Test();
         RegexEngine regextest = new RegexEngine();
         regextest.input = "b";
         RegexEngine regexresult = regextest.take(regextest);
