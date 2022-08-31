@@ -6,7 +6,7 @@ import java.lang.Object;
 
 public class Regex_Test{
     @Test
-    public static void main(String[] args) {
+    public void main() {
         Regex_Test regextesting = new Regex_Test();
         RegexEngine regextest = new RegexEngine();
         regextest.input = "b";
