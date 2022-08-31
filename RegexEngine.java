@@ -3,6 +3,9 @@ import java.util.Scanner;
 import java.lang.Boolean;
 
 // assignment 1 edc
+// expected results https://regex101.com/
+// shorturl.at/eijsT // notes on regex
+
 public class RegexEngine {
 
     String input;
@@ -42,6 +45,7 @@ public class RegexEngine {
     public Boolean accepted(RegexEngine exp, String chr){
 
       String reg = exp.input;
+      Boolean starresult;
 
       // if chr appears in reg?
       if (reg.indexOf(chr)!=-1){
@@ -51,6 +55,19 @@ public class RegexEngine {
       }
 
       // if case of STAR
+      if (reg.indexOf("*")!=-1){
+        starresult = exp.staraccepted(exp,chr);
+        return starresult;
+      } else 
+
+      return exp.accept;
+
+    }
+
+    public Boolean staraccepted(RegexEngine expstar, String charstar){
+
+      String reg = expstar.input;
+
       // get location of the stars
       int k=0;
       int loc=0;
@@ -63,24 +80,24 @@ public class RegexEngine {
         // track if the character inputs by user to match regex are all the same or not
         int same=0;
 
-        if (chr==" "){
-          exp.accept = true;
+        if (charstar==" "){
+          expstar.accept = true;
         } else {
-          for (int i=0;i<chr.length();i++){
-            if (starred==chr.charAt(i)){
+          for (int i=0;i<charstar.length();i++){
+            if (starred==charstar.charAt(i)){
               same++;
             }
           } 
         }
 
-        if (same==chr.length()){
-          exp.accept = true;
+        if (same==charstar.length()){
+          expstar.accept = true;
         } else {
-          exp.accept = false;
+          expstar.accept = false;
         }
       }
 
-      return exp.accept;
+      return expstar.accept;
 
     }
 
