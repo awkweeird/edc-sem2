@@ -24,83 +24,36 @@ public class RegexEngine {
     // regex input handler
     public RegexEngine take(RegexEngine a){
 
-      String reg = a.input ;
-
-      if (reg.equals("a")){
-        a.initial = true ;
-      } else {
-        a.accept = false ; 
-      }
-
-      if (a.initial){
-        a.accept = true ;
-      }
+      String reg = a.input ; // regex expression processing
 
 
       for (int i=0;i<reg.length();i++){
         //System.out.println("character is: " + Character.isLetter(reg.charAt(i))) ;
         if (!Character.isLetter(reg.charAt(i))){
-          a.accept = false ;
+          a.initial = false ;
         }
       }
 
       return a;
 
-      // // brackets
-      // int bracket1 = (a.input).indexOf("(");
-      // int bracket2 = (a.input).indexOf(")");
-
-      // //alternation
-      // int alt = (a.input).indexOf("|");
-      // // repetition
-      // int rep = (a.input).indexOf("*");
-
-      // String reg = a.input;
- 
-      // // Switch statement over above string
-      // switch (reg) {
-
-      // // Case 1
-      // case "one":
-
-      //     // Print statement corresponding case
-      //     System.out.println("one");
-
-      //     // break keyword terminates the
-      //     // code execution here itself
-      //     break;
-
-      // // Case 2
-      // case "two":
-
-      //     // Print statement corresponding case
-      //     System.out.println("two");
-      //     break;
-
-      // // Case 3
-      // case "three":
-
-      //     // Print statement corresponding case
-      //     System.out.println("three");
-      //     break;
-
-      // // Case 4
-      // // Default case
-      // default:
-
-      //     // Print statement corresponding case
-      //     System.out.println("no match");
-
 
       
     }
 
-    // inputted character handler
-    // public void character(String haha){
+    public Boolean accepted(RegexEngine exp, String chr){
 
+      String reg = exp.input;
 
+      // if chr appears in reg?
+      if (reg.indexOf(chr)!=-1){
+        exp.accept = true;
+      } else {
+        exp.accept = false;
+      }
 
-    // }
+      return exp.accept;
+
+    }
 
     public static void main(String[] args) {
 
@@ -119,8 +72,10 @@ public class RegexEngine {
 
       Scanner car = new Scanner(System.in);  // Create a Scanner object
       String charinput = car.nextLine();  // Read user input
+
+      Boolean result = regex.accepted(regex,charinput);
   
-      System.out.println(regex.accept);
+      System.out.println(result);
         
         // make sure there is a character on either side
         // make sure it doesnt take in any random shit
