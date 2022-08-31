@@ -105,15 +105,17 @@ public class RegexEngine {
     public static void main(String[] args) {
 
       RegexEngine regex = new RegexEngine();
-    
+
       Scanner input = new Scanner(System.in);  // Create a Scanner object
       String moreinp = input.nextLine();  // Read user input
-  
-      regex.input = moreinp ;
-  
-      regex.take(regex) ;
-  
-      System.out.println("ready") ;
+    
+      regex.input = moreinp;
+      regex.take(regex);
+      System.out.println("ready");
+
+      
+
+      while (true){ // keep going until user terminates
 
       Scanner car = new Scanner(System.in);  // Create a Scanner object
       String charinput = car.nextLine();  // Read user input
@@ -126,6 +128,10 @@ public class RegexEngine {
         // make the NFA based on the command
         
         // while NFA is true, keep going until expression ends 
+
+      }
+
+      
        
       
       }
