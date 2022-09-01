@@ -66,18 +66,18 @@ public class RegexEngine {
         if (chr.isEmpty()){
           return exp.accept = true;
         }
-        System.out.println("hello are you running?? 2");
+        //System.out.println("hello are you running?? 2");
         starresult = exp.staraccepted(exp,chr);
         return starresult;
       } else if ((reg.indexOf("+")!=-1)){ // if case of plus
         if (chr.isEmpty()){
           return exp.accept = false;
         }
-        System.out.println("hello are you running?? 1");
+        //System.out.println("hello are you running?? 1");
         plusresult = exp.plusaccepted(exp,chr);
         return plusresult;
       } else if (reg.contains(chr)){
-        System.out.println("hello are you running?? 4");
+        //System.out.println("hello are you running?? 4");
         exp.accept=true;
       }
       
@@ -163,7 +163,7 @@ public class RegexEngine {
       
       if (charplus!=null){
         if (plus == charplus.charAt(0)){
-          System.out.println("are you running? 1");
+          //System.out.println("are you running? 1");
           expplus.accept = true;
         }
 
@@ -188,7 +188,7 @@ public class RegexEngine {
 
 
       if (same==charplus.length()){
-        System.out.println("are you running? 2");
+        //System.out.println("are you running? 2");
         expplus.accept = true;
       }
       else {
@@ -198,7 +198,7 @@ public class RegexEngine {
       //case 2: aaaaab baaaab
 
       if (charplus.contains(charcompare)){
-        System.out.println("are you running? 3");
+        //System.out.println("are you running? 3");
         expplus.accept = true;
       } else {
         expplus.accept = false;
@@ -216,7 +216,7 @@ public class RegexEngine {
       Scanner input = new Scanner(System.in);  // Create a Scanner object
       String moreinp = input.nextLine();  // Read user input
 
-      Boolean cont;
+      Boolean cont = true;
     
       regex.input = moreinp;
       regex.take(regex);
