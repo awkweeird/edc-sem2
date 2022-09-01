@@ -140,7 +140,7 @@ public class RegexEngine {
 
         return expstar.accept;
 
-      }
+      } else
 
       if (same==charstar.length()){
         expstar.accept = true;
@@ -207,7 +207,7 @@ public class RegexEngine {
         return expplus.accept;
 
         
-      }
+      } else
 
 
 
