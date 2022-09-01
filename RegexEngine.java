@@ -35,7 +35,7 @@ public class RegexEngine {
         //if ( (!Character.isLetterOrDigit(reg.charAt(i))) ){ // https://stackoverflow.com/questions/8248277/how-to-determine-if-a-string-has-non-alphanumeric-characters
          //a.initial = false;
         //} else
-        if ( (Character.isLetterOrDigit(reg.charAt(i))) || ((reg.charAt(i)=='|')||(reg.charAt(i)=='*')||(reg.charAt(i)=='+')||(reg.charAt(i)=='(')||(reg.charAt(i)==')') ) ){
+        if ( (Character.isLetterOrDigit(reg.charAt(i))) | ((reg.charAt(i)=='|')|(reg.charAt(i)=='*')|(reg.charAt(i)=='+')|(reg.charAt(i)=='(')|(reg.charAt(i)==')') ) | ((a.input).isEmpty()) ){
           a.initial = true;
         } else {
           a.initial = false;
@@ -52,16 +52,36 @@ public class RegexEngine {
       String reg = exp.input;
       Boolean starresult;
       Boolean plusresult;
+      
 
       // if chr appears in reg?
-      if (reg.indexOf(chr)!=-1){
-        exp.accept = true;
-      } else if (reg.indexOf("*")!=-1){ // if case of STAR
+      // if (reg.indexOf(chr)!=-1){
+      //   System.out.println("hello are you running?? 3");
+      //   exp.accept = true;
+      // } else
+
+      
+      
+      if ((reg.indexOf("*")!=-1)){ // if case of STAR
+        if (chr.isEmpty()){
+          return exp.accept = true;
+        }
+        System.out.println("hello are you running?? 2");
         starresult = exp.staraccepted(exp,chr);
         return starresult;
-      } else if (reg.indexOf("+")!=-1){
+      } else if ((reg.indexOf("+")!=-1)){ // if case of plus
+        if (chr.isEmpty()){
+          return exp.accept = false;
+        }
+        System.out.println("hello are you running?? 1");
         plusresult = exp.plusaccepted(exp,chr);
-      } else
+        return plusresult;
+      } else if (reg.contains(chr)){
+        System.out.println("hello are you running?? 4");
+        exp.accept=true;
+      }
+      
+      else
       
       {
         exp.accept = false;
@@ -81,22 +101,24 @@ public class RegexEngine {
       int loc=0;
       loc = reg.indexOf("*");
 
-      // get the character before the star
+      // if (charstar.isEmpty()){
+      //   expstar.accept = true;
+      // }
+      
+        // get the character before the star
       Character starred = reg.charAt(loc-1);
+
 
       // case 1: a*b , aaaaaaaa , " "
 
       // track if the character inputs by user to match regex are all the same or not
       int same=0;
 
-      if (charstar==" "){
-        expstar.accept = true;
-      } else {
-        for (int i=0;i<charstar.length();i++){
-          if (starred==charstar.charAt(i)){
-            same++;
-          }
-        } 
+
+      for (int i=0;i<charstar.length();i++){
+        if (starred==charstar.charAt(i)){
+          same++;
+        }
       }
 
       // get character afterstar
@@ -121,25 +143,70 @@ public class RegexEngine {
         expstar.accept = false;
       }
 
-      
-
       return expstar.accept;
 
     }
 
     public Boolean plusaccepted(RegexEngine expplus, String charplus){
-      // String reg = expplus.input;
+      String reg = expplus.input;
 
-      // // get location of plus
-      // int loc=0;
-      // loc = expplus.indexOf("+");
+      // get location of plus
+      int loc=0;
+      loc = reg.indexOf('+');
 
-      // // get char before the plus
-      // Character plus = reg.charAt(loc-1);
+      // get char before the plus
+      Character plus = reg.charAt(loc-1);
+
+      // track if the character inputs by user to match regex are all the same or not
+      int same=0;
+
+      
+      if (charplus!=null){
+        if (plus == charplus.charAt(0)){
+          System.out.println("are you running? 1");
+          expplus.accept = true;
+        }
+
+      } else
+      
+      // if (charplus.isEmpty()){
+        
+      //   expplus.accept = false;
+      // }else
+      
+      {
+        for (int i=0;i<charplus.length();i++){
+          if (plus==charplus.charAt(i)){
+            same++;
+          }
+        } 
+      }
+
+      // get character afterstar
+      Character afterplus = reg.charAt(loc+1);
+      String charcompare = new StringBuilder().append(plus).append(afterplus).toString(); // new string made from the two chars
+
+
+      if (same==charplus.length()){
+        System.out.println("are you running? 2");
+        expplus.accept = true;
+      }
+      else {
+        expplus.accept = false;
+      }
+
+      //case 2: aaaaab baaaab
+
+      if (charplus.contains(charcompare)){
+        System.out.println("are you running? 3");
+        expplus.accept = true;
+      } else {
+        expplus.accept = false;
+      }
 
 
 
-      return false;
+      return expplus.accept;
     }
 
     public static void main(String[] args) {
