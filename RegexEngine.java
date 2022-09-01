@@ -108,14 +108,18 @@ public class RegexEngine {
 
       if (same==charstar.length()){
         expstar.accept = true;
-      } else if (charstar.contains(charcompare)){
-        expstar.accept = true ;
       }
       else {
         expstar.accept = false;
       }
 
       //case 2: aaaaab baaaab
+
+      if (charstar.contains(charcompare)){
+        expstar.accept = true;
+      } else {
+        expstar.accept = false;
+      }
 
       
 
