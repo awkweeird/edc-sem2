@@ -100,37 +100,35 @@ public class RegexEngine {
       // get location of the stars
       int loc=0;
       loc = reg.indexOf("*");
-
-      // if (charstar.isEmpty()){
-      //   expstar.accept = true;
-      // }
       
-        // get the character before the star
+      // get the character before the star
       Character starred = reg.charAt(loc-1);
+      String starstring = new StringBuilder().append(starred).toString();
 
 
-      // case 1: a*b , aaaaaaaa , " "
+      // case 1: aaaaaaaa, aaa, a
 
-      // track if the character inputs by user to match regex are all the same or not
-      int same=0;
+      // track if the string inputted by user (charstar) matches the regex of [a*] DEPRECATED
+      // int same=0;
+
+      // for (int i=0;i<charstar.length();i++){
+      //   if (starred==charstar.charAt(i)){
+      //     same++;
+      //   }
+      // }
+
+      
+
+      if (loc!=reg.length()-1){ // check that there is stuff after the star
 
 
-      for (int i=0;i<charstar.length();i++){
-        if (starred==charstar.charAt(i)){
-          same++;
-        }
-      }
-
-      if (loc==reg.length()-1){
-
+        //System.out.println("what is the problem? "+"loc: "+loc+" reg.length()-1: "+(reg.length()-1));
+        //case 2: a*b --aaaaab baaaab
 
         // get character afterstar
         Character afterstar = reg.charAt(loc+1);
         String charcompare = new StringBuilder().append(starred).append(afterstar).toString(); // new string made from the two chars
-
-        //System.out.println("charcompare: "+charcompare);
-
-                //case 2: aaaaab baaaab
+        
 
         if (charstar.contains(charcompare)){
           expstar.accept = true;
@@ -140,16 +138,22 @@ public class RegexEngine {
 
         return expstar.accept;
 
+        //
+
       } else
 
-      if (same==charstar.length()){
+      // if (same==charstar.length()){
+      //   expstar.accept = true;
+      // }
+      // else {
+      //   expstar.accept = false;
+      // }
+
+      if (charstar.contains(starstring)){ // case of a*, nothing after star
         expstar.accept = true;
-      }
-      else {
+      } else {
         expstar.accept = false;
       }
-
-
       return expstar.accept;
 
     }
