@@ -51,6 +51,7 @@ public class RegexEngine {
 
       String reg = exp.input;
       Boolean starresult;
+      Boolean plusresult;
 
       // if chr appears in reg?
       if (reg.indexOf(chr)!=-1){
@@ -58,9 +59,15 @@ public class RegexEngine {
       } else if (reg.indexOf("*")!=-1){ // if case of STAR
         starresult = exp.staraccepted(exp,chr);
         return starresult;
-      } else {
+      } else if (reg.indexOf("+")!=-1){
+        plusresult = exp.plusaccepted(exp,chr);
+      } else
+      
+      {
         exp.accept = false;
       }
+
+      
     
       return exp.accept;
 
@@ -77,6 +84,8 @@ public class RegexEngine {
       // get the character before the star
       Character starred = reg.charAt(loc-1);
 
+      // case 1: a*b , aaaaaaaa , " "
+
       // track if the character inputs by user to match regex are all the same or not
       int same=0;
 
@@ -90,14 +99,43 @@ public class RegexEngine {
         } 
       }
 
+      // get character afterstar
+      Character afterstar = reg.charAt(loc+1);
+      String charcompare = new StringBuilder().append(starred).append(afterstar).toString(); // new string made from the two chars
+
+      //System.out.println("charcompare: "+charcompare);
+
+
       if (same==charstar.length()){
         expstar.accept = true;
-      } else {
+      } else if (charstar.contains(charcompare)){
+        expstar.accept = true ;
+      }
+      else {
         expstar.accept = false;
       }
 
+      //case 2: aaaaab baaaab
+
+      
+
       return expstar.accept;
 
+    }
+
+    public Boolean plusaccepted(RegexEngine expplus, String charplus){
+      // String reg = expplus.input;
+
+      // // get location of plus
+      // int loc=0;
+      // loc = expplus.indexOf("+");
+
+      // // get char before the plus
+      // Character plus = reg.charAt(loc-1);
+
+
+
+      return false;
     }
 
     public static void main(String[] args) {
