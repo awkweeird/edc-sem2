@@ -65,7 +65,7 @@ public class RegexEngine {
       if ((reg.indexOf("*")!=-1)){ // if case of STAR
         if (chr.isEmpty()){
           return exp.accept = true;
-        }
+        } else
         //System.out.println("hello are you running?? 2");
         starresult = exp.staraccepted(exp,chr);
         return starresult;
@@ -121,12 +121,26 @@ public class RegexEngine {
         }
       }
 
-      // get character afterstar
-      Character afterstar = reg.charAt(loc+1);
-      String charcompare = new StringBuilder().append(starred).append(afterstar).toString(); // new string made from the two chars
+      if (reg.length()>3){
 
-      //System.out.println("charcompare: "+charcompare);
 
+        // get character afterstar
+        Character afterstar = reg.charAt(loc+1);
+        String charcompare = new StringBuilder().append(starred).append(afterstar).toString(); // new string made from the two chars
+
+        //System.out.println("charcompare: "+charcompare);
+
+                //case 2: aaaaab baaaab
+
+        if (charstar.contains(charcompare)){
+          expstar.accept = true;
+        } else {
+          expstar.accept = false;
+        }
+
+        return expstar.accept;
+
+      }
 
       if (same==charstar.length()){
         expstar.accept = true;
@@ -135,13 +149,6 @@ public class RegexEngine {
         expstar.accept = false;
       }
 
-      //case 2: aaaaab baaaab
-
-      if (charstar.contains(charcompare)){
-        expstar.accept = true;
-      } else {
-        expstar.accept = false;
-      }
 
       return expstar.accept;
 
