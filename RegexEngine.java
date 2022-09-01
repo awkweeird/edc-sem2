@@ -121,7 +121,7 @@ public class RegexEngine {
         }
       }
 
-      if (reg.length()>3){
+      if (loc==reg.length()-1){
 
 
         // get character afterstar
@@ -189,9 +189,26 @@ public class RegexEngine {
         } 
       }
 
-      // get character afterstar
-      Character afterplus = reg.charAt(loc+1);
-      String charcompare = new StringBuilder().append(plus).append(afterplus).toString(); // new string made from the two chars
+      if (loc==reg.length()-1){
+
+        // get character afterstar
+        Character afterplus = reg.charAt(loc+1);
+        String charcompare = new StringBuilder().append(plus).append(afterplus).toString(); // new string made from the two chars
+
+        //case 2: aaaaab baaaab
+
+        if (charplus.contains(charcompare)){
+          //System.out.println("are you running? 3");
+          expplus.accept = true;
+        } else {
+          expplus.accept = false;
+        }
+
+        return expplus.accept;
+
+        
+      }
+
 
 
       if (same==charplus.length()){
@@ -201,16 +218,6 @@ public class RegexEngine {
       else {
         expplus.accept = false;
       }
-
-      //case 2: aaaaab baaaab
-
-      if (charplus.contains(charcompare)){
-        //System.out.println("are you running? 3");
-        expplus.accept = true;
-      } else {
-        expplus.accept = false;
-      }
-
 
 
       return expplus.accept;
