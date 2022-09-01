@@ -47,18 +47,15 @@ public class RegexEngine {
       String reg = exp.input;
       Boolean starresult;
 
-      // if chr appears in reg?
-      if (reg.indexOf(chr)!=-1){
-        exp.accept = true;
-      } else {
-        exp.accept = false;
-      }
-
       // if case of STAR
       if (reg.indexOf("*")!=-1){
         starresult = exp.staraccepted(exp,chr);
         return starresult;
-      } else 
+      } else if (reg.indexOf(chr)!=-1){ // if chr appears in reg?
+        exp.accept = true;
+      } else {
+        exp.accept = false;
+      }
 
       return exp.accept;
 
