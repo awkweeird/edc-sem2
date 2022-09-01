@@ -31,14 +31,14 @@ public class RegexEngine {
       for (int i=0;i<reg.length();i++){
         //System.out.println("character is: " + Character.isLetter(reg.charAt(i))) ;
         if ( (!Character.isLetterOrDigit(reg.charAt(i))) ){ // https://stackoverflow.com/questions/8248277/how-to-determine-if-a-string-has-non-alphanumeric-characters
-          a.initial = false ;
+          a.initial = false;
+        } else {
+          a.initial = true;
         }
       }
 
       return a;
 
-
-      
     }
 
     // matching the input to the regex
@@ -66,32 +66,29 @@ public class RegexEngine {
       String reg = expstar.input;
 
       // get location of the stars
-      int k=0;
       int loc=0;
-      if (reg.indexOf("*")!=-1){
-        k++;
-        loc = reg.indexOf("*");
-        // get the character before the star
-        Character starred = reg.charAt(loc-1);
+      loc = reg.indexOf("*");
 
-        // track if the character inputs by user to match regex are all the same or not
-        int same=0;
+      // get the character before the star
+      Character starred = reg.charAt(loc-1);
 
-        if (charstar==" "){
-          expstar.accept = true;
-        } else {
-          for (int i=0;i<charstar.length();i++){
-            if (starred==charstar.charAt(i)){
-              same++;
-            }
-          } 
-        }
+      // track if the character inputs by user to match regex are all the same or not
+      int same=0;
 
-        if (same==charstar.length()){
-          expstar.accept = true;
-        } else {
-          expstar.accept = false;
-        }
+      if (charstar==" "){
+        expstar.accept = true;
+      } else {
+        for (int i=0;i<charstar.length();i++){
+          if (starred==charstar.charAt(i)){
+            same++;
+          }
+        } 
+      }
+
+      if (same==charstar.length()){
+        expstar.accept = true;
+      } else {
+        expstar.accept = false;
       }
 
       return expstar.accept;
@@ -104,14 +101,25 @@ public class RegexEngine {
 
       Scanner input = new Scanner(System.in);  // Create a Scanner object
       String moreinp = input.nextLine();  // Read user input
+
+      Boolean cont;
     
       regex.input = moreinp;
       regex.take(regex);
-      System.out.println("ready");
+
+      if (regex.initial == false){
+
+        System.out.println("ERROR");
+        cont = false;
+      } else {
+        System.out.println("ready");
+        cont = true;
+      }
+      
 
       
 
-      while (true){ // keep going until user terminates
+      while (cont){ // keep going until user terminates
 
       Scanner car = new Scanner(System.in);  // Create a Scanner object
       String charinput = car.nextLine();  // Read user input
