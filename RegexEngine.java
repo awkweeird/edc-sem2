@@ -47,16 +47,16 @@ public class RegexEngine {
       String reg = exp.input;
       Boolean starresult;
 
-      // if case of STAR
-      if (reg.indexOf("*")!=-1){
+      // if chr appears in reg?
+      if (reg.indexOf(chr)!=-1){
+        exp.accept = true;
+      } else if (reg.indexOf("*")!=-1){ // if case of STAR
         starresult = exp.staraccepted(exp,chr);
         return starresult;
-      } else if (reg.indexOf(chr)!=-1){ // if chr appears in reg?
-        exp.accept = true;
       } else {
         exp.accept = false;
       }
-
+    
       return exp.accept;
 
     }
