@@ -105,18 +105,6 @@ public class RegexEngine {
       Character starred = reg.charAt(loc-1);
       String starstring = new StringBuilder().append(starred).toString();
 
-
-      // case 1: aaaaaaaa, aaa, a
-
-      // track if the string inputted by user (charstar) matches the regex of [a*] DEPRECATED
-      // int same=0;
-
-      // for (int i=0;i<charstar.length();i++){
-      //   if (starred==charstar.charAt(i)){
-      //     same++;
-      //   }
-      // }
-
       
 
       if (loc!=reg.length()-1){ // check that there is stuff after the star
@@ -142,14 +130,7 @@ public class RegexEngine {
 
       } else
 
-      // if (same==charstar.length()){
-      //   expstar.accept = true;
-      // }
-      // else {
-      //   expstar.accept = false;
-      // }
-
-      if (charstar.contains(starstring)){ // case of a*, nothing after star
+      if (charstar.contains(starstring)){ // case of a*, nothing after star // case 1: aaaaaaaa, aaa, a
         expstar.accept = true;
       } else {
         expstar.accept = false;
@@ -167,6 +148,7 @@ public class RegexEngine {
 
       // get char before the plus
       Character plus = reg.charAt(loc-1);
+      String plusstring = new StringBuilder().append(plus).toString();
 
       // track if the character inputs by user to match regex are all the same or not
       int same=0;
@@ -174,16 +156,11 @@ public class RegexEngine {
       
       if (charplus!=null){
         if (plus == charplus.charAt(0)){
-          //System.out.println("are you running? 1");
           expplus.accept = true;
         }
 
       } else
-      
-      // if (charplus.isEmpty()){
-        
-      //   expplus.accept = false;
-      // }else
+    
       
       {
         for (int i=0;i<charplus.length();i++){
@@ -193,7 +170,7 @@ public class RegexEngine {
         } 
       }
 
-      if (loc==reg.length()-1){
+      if (loc!=reg.length()-1){
 
         // get character afterstar
         Character afterplus = reg.charAt(loc+1);
@@ -208,18 +185,11 @@ public class RegexEngine {
           expplus.accept = false;
         }
 
-        return expplus.accept;
-
-        
       } else
 
-
-
-      if (same==charplus.length()){
-        //System.out.println("are you running? 2");
+      if (charplus.contains(plusstring)){ // case of a*, nothing after star // case 1: aaaaaaaa, aaa, a
         expplus.accept = true;
-      }
-      else {
+      } else {
         expplus.accept = false;
       }
 
